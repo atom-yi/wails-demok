@@ -9,6 +9,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Coder from './pages/Coder';
 import Time from './pages/Time';
+import CalendarView from './pages/todo/CalendarView';
+import ListView from "./pages/todo/ListView.jsx";
 
 const { Sider, Content } = Layout;
 
@@ -20,6 +22,19 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
+            },
+            {
+                path: "todos",
+                children: [
+                    {
+                        path: "calendar",
+                        element: <CalendarView />,
+                    },
+                    {
+                        path: "list",
+                        element: <ListView />,
+                    },
+                ]
             },
             {
                 path: "coder",
@@ -43,7 +58,7 @@ function AppLayout() {
             <Sider collapsible>
                 <Sidebar />
             </Sider>
-            <Content className="h-screen">
+            <Content className="h-screen" style={{ overflow: "auto" }}>
                 <Outlet />
             </Content>
         </Layout>
